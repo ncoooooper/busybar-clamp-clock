@@ -1,6 +1,17 @@
 {
   "app": "busybar-clamp-clock",
-  "sha256": "2edd82d4b9f0361f8fe03940e3ab0c0804a2220a494612da529a6e1e1a967395",
+  "sha256": "c484045e896eb27d1423663f48058929c71e23f0257346eff76942685bfdb9d1",
+  "rapid_input_test": {
+    "app": "io.ncoooooper.clampclock",
+    "sha256": "c484045e896eb27d1423663f48058929c71e23f0257346eff76942685bfdb9d1",
+    "firmware": {
+      "name": "1.3.1",
+      "commit": "8edd2da4"
+    },
+    "heap_peak_kib": 94.7,
+    "budget_kib": 128.0,
+    "exit": "finished"
+  },
   "firmware": "1.3.1",
   "cell": 16,
   "lit": 14,
