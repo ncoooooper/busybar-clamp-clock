@@ -1,66 +1,10 @@
-import { device } from "@shared/device";
-import { column, render, type Node } from "@busy-app/busy-lib";
-import manifest from "./appmeta/manifest.json";
-
-/** The name the app draws under; the device clears elements by this id. */
-const APP = manifest.id;
-
-/** How often the screen is redrawn. */
-const TICK_MS = 1000;
-
-const WHITE = "#FFFFFFFF";
-const SUBTLE_WHITE = "#FFFFFF80";
-
-/**
- * The frame drawn on every tick. The screen is 72×16, so two short lines are about all that fits.
- */
-function frame(ticks: number): Node {
-  return column({ justify: "center", align: "center" }, [
-    { type: "text", id: "title", text: "Hello", font: "bold", color: WHITE },
-    {
-      type: "text",
-      id: "ticks",
-      text: String(ticks),
-      font: "small",
-      color: SUBTLE_WHITE,
-    },
-  ]);
-}
-
-/** Sends one frame to the device. */
-async function draw(ticks: number): Promise<void> {
-  const elements = render(frame(ticks));
-  await device.DisplayDraw({ application_name: APP, priority: 50, elements });
-}
-
-/**
- * Entry point, called at the end of the file: the device runs this script from top to bottom and starts nothing by itself.
- */
-function main(): void {
-  let ticks = 0;
-  let stopped = false;
-
-  const report = (err: unknown) =>
-    console.error(`${APP}: ${err instanceof Error ? err.message : String(err)}`);
-
-  void draw(ticks).catch(report);
-
-  // Tick errors are reported, not thrown: one failed request must not stop the loop.
-  const timer = setInterval(() => {
-    ticks += 1;
-    void draw(ticks).catch(report);
-  }, TICK_MS);
-
-  // Back leaves the app. Once the timer is cleared and the handler detached, nothing keeps it alive and the device takes the screen back.
-  const unbind = listen("input", (event) => {
-    if (stopped || event.key !== "back" || event.action !== "short") return;
-
-    stopped = true;
-    clearInterval(timer);
-
-    // Not detached from inside the handler itself: with nothing else left the unbind stops the app on the spot, while this handler is still running.
-    setTimeout(unbind, 0);
-  });
-}
-
-main();
+import {desk,duration} from "@shared/desk";
+import {wrap} from "@shared/surface";
+type S={at:number;edit:boolean;mins:number[];due:number[]};const tag=["A","B","C"];
+desk<S>({name:"Clamp Clock",accent:"#ECA64C",motion:{"motif":"interval","color":"#ECA64C","shine":"#FFF0BB"},initial:()=>({at:0,edit:false,mins:[20,12,5],due:[0,0,0]}),ticking:s=>s.due.some(Boolean),
+ render:(s,now)=>{const i=s.at,remaining=s.due[i]-now;const state=(j:number)=>!s.due[j]?s.mins[j]+"m set":s.due[j]<=now?"RELEASE":duration(s.due[j]-now);
+ const next=[0,1,2].filter(j=>s.due[j]>0).sort((a,b)=>s.due[a]-s.due[b])[0];return {title:"Clamp "+tag[i],value:s.edit?s.mins[i]+" min":state(i),progress:s.due[i]?1-Math.max(0,remaining)/(s.mins[i]*60000):0,lines:["Clamp "+tag[i]+(s.edit?" / EDIT":" / MONITOR"),...tag.map((t,j)=>t+"   "+state(j)),next===undefined?"No timers running":"First due: "+tag[next],"Click: minutes / Start: run"]};},
+ action:(s,k,now)=>{const i=s.at;if(k==="ok"&&!s.due[i])s.edit=!s.edit;
+ if(k==="up"||k==="down"){const n=k==="up"?1:-1;if(s.edit)s.mins[i]=Math.max(1,Math.min(240,s.mins[i]+n));else s.at=wrap(i+n,3);}
+ if(k==="start"){s.edit=false;if(!s.due[i])s.due[i]=now+s.mins[i]*60000;else if(s.due[i]<=now)s.due[i]=0;}
+ if(k==="hold-start"){s.due[i]=0;s.edit=false;}}});

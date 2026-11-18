@@ -1,0 +1,18 @@
+{
+  "id": "BB-064",
+  "source": "On-device state and physical controls exercised in the firmware emulator.",
+  "scenario": "Set a duration for A, started A and B independently and returned to the first timer.",
+  "keys": [
+    "ok",
+    "up",
+    "ok",
+    "start",
+    "up",
+    "start",
+    "down"
+  ],
+  "frames": 54,
+  "distinct_frames": 25,
+  "exit": "App io.ncoooooper.clampclock exited: finished; heap peak 84.2 of 128 KiB",
+  "sha256": "99780a9c1a20cdc08704c7142fa4a5e4376c49002debde68cd66bbed95911eef"
+}

@@ -2,7 +2,7 @@
   "name": "busybar-clamp-clock",
   "private": true,
   "version": "0.1.0",
-  "description": "Clamp Clock",
+  "description": "Run three independent glue-clamp timers and find which assembly is ready to release.",
   "author": "ncoooooper",
   "type": "module",
   "scripts": {

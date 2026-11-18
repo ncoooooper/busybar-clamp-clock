@@ -1,0 +1,6 @@
+{
+  "category": "utilities",
+  "short_description": "Run three independent glue-clamp timers and find which assembly is ready to release.",
+  "description": "Run three independent glue-clamp timers and find which assembly is ready to release. Select clamp A, B or C with the wheel. Click edits its duration in minutes, then click again to browse. Start runs an idle timer or acknowledges a completed timer. Hold Start cancels only the selected clamp. Other timers continue using absolute deadlines across app restarts.",
+  "changelog": "First public version."
+}
