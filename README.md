@@ -4,6 +4,8 @@ Run three independent glue-clamp timers and find which assembly is ready to rele
 
 Three glue-ups rarely go into clamps together. Give each one its own clock and read all three from the back instead of restarting a shared timer for the latest piece.
 
+The three columns are clamps A, B and C. A running timer fills in amber and turns green when it is ready to release. The underline follows the clamp selected with the wheel.
+
 ## Set the first assembly’s timer
 
 1. Label the work positions A, B and C. Turn to the matching clamp and click to edit its duration. The wheel changes the value one minute at a time.
