@@ -2,7 +2,7 @@
   "format_version": 1,
   "id": "io.ncoooooper.clampclock",
   "name": "Clamp Clock",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "api_version": "27.12.0",
   "description": "Run three independent glue-clamp timers and find which assembly is ready to release.",
   "author": "ncoooooper"

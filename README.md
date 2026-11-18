@@ -6,6 +6,20 @@ Three glue-ups rarely go into clamps together. Give each one its own clock and r
 
 The three columns are clamps A, B and C. A running timer fills in amber and turns green when it is ready to release. The underline follows the clamp selected with the wheel.
 
+## Screen transitions
+
+Move between two clamp timers. Each remaining time belongs to the selected assembly.
+
+![Clamp Clock front display. Move between two clamp timers. Each remaining time belongs to the selected assembly.](media/guide/screen-transitions.gif)
+
+<details>
+
+<summary>Watch the rear display</summary>
+
+![Clamp Clock rear display during the recorded controls](media/guide/screen-transitions-rear.gif)
+
+</details>
+
 ## Set the first assembly’s timer
 
 1. Label the work positions A, B and C. Turn to the matching clamp and click to edit its duration. The wheel changes the value one minute at a time.
@@ -36,6 +50,6 @@ Open BUSY Bar Emulator. From this repository, run:
 
 Press **Back** to exit.
 
-The GIFs are excerpts from the emulator recording. Each front-display pixel is shown at 9× its original width and height. The end frames pause for reading.
+The GIFs are excerpts from the emulator recording. Each LED occupies a 16 × 16 cell with a black border. The end frames pause for reading.
 
 [Full recording](media/controls.mp4) · [Rear display](screenshots/back-1.png) · [Firmware test](EMULATOR-QA.md) · [MIT license](LICENSE)
